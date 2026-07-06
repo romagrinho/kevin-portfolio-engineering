@@ -45,6 +45,7 @@ Public
 
    ```
 3. Abra o arquivo `index.html` em seu navegador web para visualizar o portfólio.
+```
 
 ## Personalização
 
