@@ -29,4 +29,29 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
+
+    // Progress bar logic
+    const startDate = new Date("2025-07-01"); // Second semester of 2025
+    const endDate = new Date("2028-12-31");   // Second semester of 2028
+    const now = new Date();
+
+    const totalDuration = endDate.getTime() - startDate.getTime();
+    const elapsedDuration = now.getTime() - startDate.getTime();
+
+    let progress = 0;
+    if (now >= endDate) {
+        progress = 100;
+    } else if (now <= startDate) {
+        progress = 0;
+    } else {
+        progress = (elapsedDuration / totalDuration) * 100;
+    }
+
+    const progressBar = document.getElementById("progress-processos-gerenciais");
+    const progressText = progressBar.nextElementSibling; // Span with 0%
+
+    if (progressBar && progressText) {
+        progressBar.style.width = `${progress.toFixed(0)}%`;
+        progressText.textContent = `${progress.toFixed(0)}%`;
+    }
 });

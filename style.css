@@ -154,6 +154,35 @@ header p {
     background-color: #2563eb; /* Blue 600 */
 }
 
+/* --- Progress Bar --- */
+.progress-container {
+    background-color: #334155; /* Slate 700 */
+    border-radius: 10px;
+    position: relative;
+    margin: 15px 0;
+    height: 20px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: var(--accent-color);
+    height: 100%;
+    width: 0;
+    transition: width 1s ease-in-out;
+}
+
+.progress-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-main);
+    pointer-events: none;
+}
+
 /* --- Footer --- */
 footer {
     text-align: center;
