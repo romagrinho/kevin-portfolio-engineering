@@ -1,6 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
     const filterBtns = document.querySelectorAll(".filter-btn");
-    const cards = document.querySelectorAll(".card");
+    const grid = document.getElementById("portfolio-grid");
+    const cards = Array.from(document.querySelectorAll(".card"));
+
+    // Ordena os cards para que os que possuem a barra de progresso apareçam primeiro
+    cards.sort((a, b) => {
+        const hasProgressA = a.querySelector(".progress-container") !== null;
+        const hasProgressB = b.querySelector(".progress-container") !== null;
+        
+        if (hasProgressA && !hasProgressB) return -1;
+        if (!hasProgressA && hasProgressB) return 1;
+        return 0;
+    });
+
+    // Re-append sorted cards to the grid container
+    cards.forEach(card => grid.appendChild(card));
 
     filterBtns.forEach(btn => {
         btn.addEventListener("click", () => {
@@ -30,9 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Progress bar logic
-    const startDate = new Date("2025-07-01"); // Second semester of 2025
-    const endDate = new Date("2028-12-31");   // Second semester of 2028
+    // Barra de progresso para "Processos Gerenciais"
+    const startDate = new Date("2025-07-01"); // Segundo semestre de 2025
+    const endDate = new Date("2028-12-31");   // Segundo semestre de 2028
     const now = new Date();
 
     const totalDuration = endDate.getTime() - startDate.getTime();
@@ -48,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const progressBar = document.getElementById("progress-processos-gerenciais");
-    const progressText = progressBar.nextElementSibling; // Span with 0%
+    const progressText = progressBar ? progressBar.nextElementSibling : null; // Span com 0%
 
     if (progressBar && progressText) {
         progressBar.style.width = `${progress.toFixed(0)}%`;
